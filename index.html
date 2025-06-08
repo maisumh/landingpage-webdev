@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SoTech - Social Technologies | High-Converting Websites for Small Businesses</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-blue: #5B7FFF;
+            --primary-purple: #B565D8;
+            --light-blue: #8FA4FF;
+            --light-purple: #D8A5E3;
+            --dark-blue: #3D5AF1;
+            --dark-purple: #9B51E0;
+            --white: #ffffff;
+            --dark-gray: #1a1a1a;
+            --light-gray: #f8f9fa;
+            --text-gray: #6c757d;
+            --success-green: #28a745;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--dark-gray);
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Gradient text utility */
+        .gradient-text {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-purple) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, rgba(91, 127, 255, 0.1) 0%, rgba(181, 101, 216, 0.1) 100%);
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -20%;
+            left: -10%;
+            width: 40%;
+            height: 40%;
+            background: radial-gradient(circle, var(--light-blue) 0%, transparent 70%);
+            opacity: 0.3;
+            filter: blur(60px);
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -20%;
+            right: -10%;
+            width: 40%;
+            height: 40%;
+            background: radial-gradient(circle, var(--light-purple) 0%, transparent 70%);
+            opacity: 0.3;
+            filter: blur(60px);
+            animation: float 15s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(-10%, -10%) scale(1); }
+            50% { transform: translate(10%, 10%) scale(1.1); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Logo styling */
+        .logo {
+            width: 200px;
+            margin-bottom: 2rem;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        h2 {
+            font-size: clamp(1.5rem, 3vw, 2.5rem);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--dark-gray);
+        }
+
+        .hero h2 {
+            font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+            font-weight: 400;
+            color: var(--text-gray);
+            margin-bottom: 2rem;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 16px 40px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-purple) 100%);
+            color: var(--white);
+            box-shadow: 0 4px 15px rgba(91, 127, 255, 0.3);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(91, 127, 255, 0.4);
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .btn:active::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .trust-text {
+            margin-top: 2rem;
+            font-size: 0.9rem;
+            color: var(--text-gray);
+        }
+
+        .trust-logos {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .logo-placeholder {
+            width: 120px;
+            height: 40px;
+            background: linear-gradient(135deg, rgba(91, 127, 255, 0.1) 0%, rgba(181, 101, 216, 0.1) 100%);
+            border: 1px solid rgba(91, 127, 255, 0.2);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            color: var(--primary-blue);
+        }
+
+        /* Sections */
+        section {
+            padding: 80px 0;
+            position: relative;
+        }
+
+        section:nth-child(even) {
+            background: var(--light-gray);
+        }
+
+        /* Problem + Solution */
+        .problem-solution {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .column {
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .column::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-blue), var(--primary-purple));
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .column:hover::before {
+            transform: scaleX(1);
+        }
+
+        .column:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .icon {
+            width: 60px;
+            height: 60px;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 15px;
+            font-size: 2rem;
+        }
+
+        .icon-warning {
+            background: linear-gradient(135deg, rgba(91, 127, 255, 0.1) 0%, rgba(181, 101, 216, 0.1) 100%);
+        }
+
+        .icon-solution {
+            background: linear-gradient(135deg, rgba(181, 101, 216, 0.1) 0%, rgba(91, 127, 255, 0.1) 100%);
+        }
+
+        /* Services */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .service-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid transparent;
+            background: linear-gradient(var(--white), var(--white)) padding-box,
+                        linear-gradient(135deg, var(--primary-blue), var(--primary-purple)) border-box;
+            border: 2px solid transparent;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(91, 127, 255, 0.2);
+        }
+
+        .service-card h4 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-purple) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Process */
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+            position: relative;
+        }
+
+        .process-step {
+            text-align: center;
+            position: relative;
+            padding: 2rem;
+            background: var(--white);
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+        }
+
+        .process-step:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(91, 127, 255, 0.2);
+        }
+
+        .step-number {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-purple) 100%);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 15px rgba(91, 127, 255, 0.3);
+        }
+
+        .process-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-purple) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Testimonials */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .testimonial {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .testimonial:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(91, 127, 255, 0.2);
+        }
+
+        .testimonial::before {
+            content: '"';
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            font-size: 4rem;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-purple) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            opacity: 0.3;
+        }
+
+        .testimonial-content {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .author-photo {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-purple));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-weight: bold;
+        }
+
+        /* Form */
+        .form-section {
+            background: linear-gradient(135deg, rgba(91, 127, 255, 0.05) 0%, rgba(181, 101, 216, 0.05) 100%);
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 3rem auto 0;
+            background: var(--white);
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--dark-gray);
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 12px 20px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 4px rgba(91, 127, 255, 0.1);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-disclaimer {
+            text-align: center;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            color: var(--text-gray);
+        }
+
+        .success-message {
+            display: none;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-purple) 100%);
+            color: var(--white);
+            padding: 1rem;
+            border-radius: 10px;
+            text-align: center;
+            margin-top: 1rem;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* FAQ */
+        .faq-container {
+            max-width: 800px;
+            margin: 3rem auto 0;
+        }
+
+        .faq-item {
+            background: var(--white);
+            margin-bottom: 1rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            box-shadow: 0 10px 30px rgba(91, 127, 255, 0.15);
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: linear-gradient(135deg, rgba(91, 127, 255, 0.05) 0%, rgba(181, 101, 216, 0.05) 100%);
+        }
+
+        .faq-toggle {
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-purple) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .faq-answer {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 0 1.5rem 1.5rem;
+            max-height: 300px;
+        }
+
+        .faq-item.active .faq-toggle {
+            transform: rotate(45deg);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-purple) 100%);
+            color: var(--white);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: float 15s ease-in-out infinite reverse;
+        }
+
+        .cta-section h3 {
+            color: var(--white);
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn-secondary {
+            background: var(--white);
+            color: var(--primary-blue);
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn-secondary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255,255,255,0.3);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            section {
+                padding: 60px 0;
+            }
+            
+            .hero {
+                min-height: 80vh;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .process-steps {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-form {
+                padding: 2rem;
+            }
+        }
+
+        /* Smooth scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Text utilities */
+        .text-center {
+            text-align: center;
+        }
+
+        .text-muted {
+            color: var(--text-gray);
+        }
+
+        /* Loading animation for form */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            border-top-color: var(--white);
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Network nodes decoration */
+        .network-bg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0.05;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <svg class="logo" viewBox="0 0 800 200" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Network nodes -->
+                    <circle cx="60" cy="40" r="15" fill="#5B7FFF"/>
+                    <circle cx="30" cy="80" r="12" fill="#8FA4FF"/>
+                    <circle cx="90" cy="80" r="12" fill="#B565D8"/>
+                    <circle cx="60" cy="120" r="15" fill="#5B7FFF"/>
+                    <circle cx="30" cy="160" r="12" fill="#8FA4FF"/>
+                    <circle cx="90" cy="160" r="12" fill="#B565D8"/>
+                    
+                    <!-- Connecting lines -->
+                    <line x1="60" y1="40" x2="30" y2="80" stroke="#5B7FFF" stroke-width="3" opacity="0.5"/>
+                    <line x1="60" y1="40" x2="90" y2="80" stroke="#B565D8" stroke-width="3" opacity="0.5"/>
+                    <line x1="30" y1="80" x2="60" y2="120" stroke="#8FA4FF" stroke-width="3" opacity="0.5"/>
+                    <line x1="90" y1="80" x2="60" y2="120" stroke="#B565D8" stroke-width="3" opacity="0.5"/>
+                    <line x1="60" y1="120" x2="30" y2="160" stroke="#5B7FFF" stroke-width="3" opacity="0.5"/>
+                    <line x1="60" y1="120" x2="90" y2="160" stroke="#B565D8" stroke-width="3" opacity="0.5"/>
+                    
+                    <!-- SoTech text -->
+                    <text x="140" y="90" font-family="Arial, sans-serif" font-size="72" font-weight="bold">
+                        <tspan fill="#5B7FFF">So</tspan><tspan fill="#B565D8">Tech</tspan>
+                    </text>
+                    
+                    <!-- Social Technologies text -->
+                    <text x="140" y="130" font-family="Arial, sans-serif" font-size="36" font-weight="normal">
+                        <tspan fill="#8FA4FF">Social </tspan><tspan fill="#D8A5E3">Technologies</tspan>
+                    </text>
+                </svg>
+                <h1 class="gradient-text">High-Converting Websites for Grow-Hungry Small Businesses</h1>
+                <h2>Custom, SEO-Optimized & Mobile-First Designs That Turn Visitors into Customers</h2>
+                <a href="#contact" class="btn">Get My Free Quote</a>
+                <p class="trust-text">Trusted by local businesses just like yours.</p>
+                <div class="trust-logos">
+                    <div class="logo-placeholder">Client Logo 1</div>
+                    <div class="logo-placeholder">Client Logo 2</div>
+                    <div class="logo-placeholder">Client Logo 3</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem + Solution -->
+    <section>
+        <div class="container">
+            <div class="problem-solution">
+                <div class="column">
+                    <div class="icon icon-warning">⚠️</div>
+                    <h3>Why Most Small Business Sites Underperform</h3>
+                    <p>A beautiful website alone won't generate leads if it's slow, unoptimized for search, or confusing to navigate. Every day you lose potential customers because they bounce before finding what they need. If your site isn't built to convert, you're leaving money on the table.</p>
+                </div>
+                <div class="column">
+                    <div class="icon icon-solution">💡</div>
+                    <h3>Our Solution: Websites That Work</h3>
+                    <p>At SoTech, we don't just design pretty pages—we engineer every element for maximum conversions. From speed and SEO to crystal-clear user paths, our sites are built to rank, impress, and drive qualified leads straight to your inbox.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section>
+        <div class="container">
+            <h2 class="text-center gradient-text">What We Offer</h2>
+            <p class="text-center text-muted">Everything you need for a website that stands out—and sells.</p>
+            <div class="services-grid">
+                <div class="service-card">
+                    <h4>Responsive Design</h4>
+                    <p>Looks perfect on every device—mobile, tablet, or desktop.</p>
+                </div>
+                <div class="service-card">
+                    <h4>SEO & Speed Optimization</h4>
+                    <p>Fast load times and search-friendly structure to help you rank higher—no compromises.</p>
+                </div>
+                <div class="service-card">
+                    <h4>Custom Branding & Graphics</h4>
+                    <p>We create a unique visual identity—logos, color palettes, and imagery—that aligns with your brand voice.</p>
+                </div>
+                <div class="service-card">
+                    <h4>Ongoing Support & Maintenance</h4>
+                    <p>From hosting to security patches, we've got your back—so you can focus on running your business.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process -->
+    <section>
+        <div class="container">
+            <h2 class="text-center gradient-text">How It Works</h2>
+            <p class="text-center text-muted">A simple four-step process to get your new website built and launched.</p>
+            <div class="process-steps">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <div class="process-icon">📝</div>
+                    <h4>Fill Out Our Contact Form</h4>
+                    <p>Start by telling us about your project goals, timeline, and budget. Once submitted, you'll receive a confirmation email immediately.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <div class="process-icon">📧</div>
+                    <h4>Website Questionnaire</h4>
+                    <p>After form submission, we'll send you an email with a detailed questionnaire about your brand, design preferences, and feature requirements. Completing this helps us tailor your quote precisely.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <div class="process-icon">💰</div>
+                    <h4>Receive Custom Quote</h4>
+                    <p>Submit the questionnaire, and within 48 hours we'll email you a comprehensive proposal and cost estimate based on your inputs.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">4</div>
+                    <div class="process-icon">📅</div>
+                    <h4>Schedule Project Kickoff</h4>
+                    <p>Once you review and approve the quote, we'll set up a kickoff meeting to walk you through the proposal, answer questions, and define next steps.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section>
+        <div class="container">
+            <h2 class="text-center gradient-text">What Our Clients Say</h2>
+            <p class="text-center text-muted">Real feedback from businesses like yours</p>
+            <div class="testimonials-grid">
+                <div class="testimonial">
+                    <p class="testimonial-content">"Working with SoTech changed our online game—traffic and leads doubled within two months."</p>
+                    <div class="testimonial-author">
+                        <div class="author-photo">AT</div>
+                        <div>
+                            <strong>Alex T.</strong><br>
+                            <small>Local Boutique Owner</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial">
+                    <p class="testimonial-content">"From design to launch, the process was seamless. We love the new site, and clients always comment on how easy it is to use."</p>
+                    <div class="testimonial-author">
+                        <div class="author-photo">ML</div>
+                        <div>
+                            <strong>Maria L.</strong><br>
+                            <small>Fitness Studio Proprietor</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial">
+                    <p class="testimonial-content">"SoTech's custom site helped us book 25% more reservations right out of the gate. Highly recommend."</p>
+                    <div class="testimonial-author">
+                        <div class="author-photo">AS</div>
+                        <div>
+                            <strong>Abbas S.</strong><br>
+                            <small>Co-Owner, CVCHÉ Kitchen</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form -->
+    <section id="contact" class="form-section">
+        <div class="container">
+            <h2 class="text-center gradient-text">Ready to Grow? Tell Us About Your Project</h2>
+            <p class="text-center">Fill out the form below, and we'll be in touch within 24 hours.</p>
+            <form class="contact-form" id="contactForm">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" placeholder="Jane Doe" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="you@example.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="website">Website URL</label>
+                    <input type="url" id="website" name="website" placeholder="https://example.com">
+                </div>
+                <div class="form-group">
+                    <label for="details">Project Details</label>
+                    <textarea id="details" name="details" placeholder="Briefly describe your goals, target launch date, and budget." required></textarea>
+                </div>
+                <button type="submit" class="btn" style="width: 100%;">
+                    <span class="btn-text">Get My Free Quote</span>
+                </button>
+                <p class="form-disclaimer">We respect your privacy. Your info stays safe with us.</p>
+                <div class="success-message" id="successMessage">
+                    Thanks for reaching out! We'll contact you within 24 hours.
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section>
+        <div class="container">
+            <h2 class="text-center gradient-text">Frequently Asked Questions</h2>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>How long does my new website take to launch?</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Most small-business sites launch within 4–6 weeks, depending on content approvals and complexity. We'll share a detailed timeline during our discovery call.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Will my site be mobile-friendly?</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Absolutely. Every design is built mobile-first—meaning pages look and perform flawlessly on phones, tablets, and desktop.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Do you handle hosting and domain registration?</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes. We can set up hosting on your behalf (AWS, DigitalOcean, or a managed WordPress host) and register a domain—or connect to one you already own.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>What happens after launch?</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We'll train you on how to update basic content (text, images, blog posts). If you need advanced tweaks, our maintenance packages cover that at a flat monthly rate.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Secondary CTA -->
+    <section class="cta-section">
+        <div class="container">
+            <h3>Still Have Questions?</h3>
+            <p>Schedule a 15-minute call with our team—no obligation. We'll answer any questions and outline your next steps.</p>
+            <a href="#" class="btn btn-secondary">Schedule a Call →</a>
+        </div>
+    </section>
+
+    <script>
+        // FAQ Toggle
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const item = question.parentElement;
+                item.classList.toggle('active');
+            });
+        });
+
+        // Form Submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const button = this.querySelector('button');
+            const btnText = button.querySelector('.btn-text');
+            const originalText = btnText.textContent;
+            
+            // Show loading state
+            btnText.innerHTML = '<span class="loading"></span>';
+            button.disabled = true;
+            
+            // Simulate form submission
+            setTimeout(() => {
+                // Show success message
+                document.getElementById('successMessage').style.display = 'block';
+                
+                // Reset form
+                this.reset();
+                
+                // Reset button
+                btnText.textContent = originalText;
+                button.disabled = false;
+                
+                // Scroll to success message
+                document.getElementById('successMessage').scrollIntoView({ behavior: 'smooth', block: 'center' });
+                
+                // Hide success message after 5 seconds
+                setTimeout(() => {
+                    document.getElementById('successMessage').style.display = 'none';
+                }, 5000);
+            }, 1500);
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Add scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.6s ease-out';
+                    entry.target.style.opacity = '1';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections and cards
+        document.querySelectorAll('section, .column, .service-card, .process-step, .testimonial').forEach(el => {
+            el.style.opacity = '0';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
